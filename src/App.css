@@ -167,6 +167,10 @@ table {
   background-color: purple;
 }
 
+.reviews-list-container > a {
+  text-decoration: none;
+}
+
 .reviews-list-item {
   border: 1px solid black;
   height: auto;
