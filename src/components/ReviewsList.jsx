@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getReviews } from "../api/api";
+import ReviewCard from "./ReviewCard";
 
 export default function ReviewsList() {
   const [reviewsState, setReviewsState] = useState([]);
@@ -13,30 +15,10 @@ export default function ReviewsList() {
   return (
     <div className="reviews-list-container">
       {reviewsState.map((review) => {
-        const {
-          review_id,
-          title,
-          category,
-          designer,
-          owner,
-          review_body,
-          review_img_url,
-          created_at,
-          votes,
-          comment_count,
-        } = review;
         return (
-          <div key={review_id} className="reviews-list-item">
-            Review by: {owner}
-            <h2>{title}</h2>
-            <h2>{category}</h2>
-            <p>{designer}</p>
-            <p>{created_at}</p>
-            <button>⬆️</button>
-            {votes}
-            <button>⬇️</button>
-            <button>💬{comment_count}</button>
-          </div>
+          <Link key={review.review_id} to={`/reviews/${review.review_id}`}>
+            <ReviewCard review={review}></ReviewCard>;
+          </Link>
         );
       })}
     </div>
