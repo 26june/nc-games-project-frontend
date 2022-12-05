@@ -1,4 +1,53 @@
-.App {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.allusers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.allusers-item {
+  height: 150px;
+  width: 150px;
+  padding: 10px;
+  margin: 10px;
+  background-color: blue;
+}
+.allusers-item > img {
+  aspect-ratio: 1/1;
+  width: 75px;
+}
+
+.header-container {
+  height: 5vh;
+  width: 100vw;
+  background-color: blue;
   text-align: center;
 }
 
+.nav-container {
+  height: 5vh;
+  width: 100vw;
+  background-color: red;
+  text-align: center;
+}
+
+.reviews-list-container {
+  height: auto;
+  width: 100vw;
+  background-color: purple;
+  text-align: center;
+  padding: 1%;
+}
+
+.reviews-list-item {
+  margin: 5%;
+  height: auto;
+  width: auto;
+  background-color: pink;
+  text-align: center;
+}
