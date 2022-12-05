@@ -27,14 +27,14 @@ export default function ReviewsList() {
         } = review;
         return (
           <div key={review_id} className="reviews-list-item">
+            Review by: {owner}
             <h2>{title}</h2>
             <h2>{category}</h2>
             <p>{designer}</p>
-            <p>{owner}</p>
             <p>{created_at}</p>
-            <button>Up</button>
+            <button>⬆️</button>
             {votes}
-            <button>Down</button>
+            <button>⬇️</button>
             <button>💬{comment_count}</button>
           </div>
         );
