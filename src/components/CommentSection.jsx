@@ -8,7 +8,7 @@ export default function CommentSection({ review_id }) {
     getCommentsByReviewId(review_id).then((response) => {
       setComments(response);
     });
-  }, []);
+  }, [review_id]);
 
   return (
     <div>
