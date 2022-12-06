@@ -1,4 +1,6 @@
 import React from "react";
+import { getCommentsByReviewId } from "../api/api";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ReviewCard({ review }) {
   const {
@@ -13,6 +15,12 @@ export default function ReviewCard({ review }) {
     votes,
     comment_count,
   } = review;
+
+  let navigate = useNavigate();
+
+  function handleCommentClick() {
+    navigate(`/reviews/${review_id}/comments`);
+  }
 
   return (
     <div className="reviews-list-item">
@@ -32,7 +40,7 @@ export default function ReviewCard({ review }) {
         <button>⬇️</button>
       </div>
       <div className="reviewcard-comments">
-        <button>💬{comment_count}</button>
+        <button onClick={handleCommentClick}>💬{comment_count}</button>
       </div>
     </div>
   );
