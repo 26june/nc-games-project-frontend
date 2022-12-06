@@ -134,17 +134,30 @@ table {
   border-spacing: 0;
 }
 
-/* .allusers-container {
-} */
+.allusers-container {
+  display: flex;
+  flex-direction: column;
+}
 
 .allusers-item {
-  height: 150px;
-  width: 150px;
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.allusers-item > img {
-  aspect-ratio: 1/1;
-  width: 50px;
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.username {
+  margin-left: 20px;
+  color: #999;
 }
 
 .header-container {
