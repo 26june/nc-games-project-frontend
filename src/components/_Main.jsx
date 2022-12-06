@@ -11,7 +11,7 @@ export default function Home() {
       <Nav></Nav>
       <Routes>
         <Route path="/" element={<ReviewsList></ReviewsList>}></Route>
-        <Route path="/reviews/:review_id" element={<Review></Review>}></Route>
+        <Route path="/reviews/:review_id/*" element={<Review></Review>}></Route>
       </Routes>
     </div>
   );
