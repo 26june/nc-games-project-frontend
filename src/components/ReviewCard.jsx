@@ -16,15 +16,24 @@ export default function ReviewCard({ review }) {
 
   return (
     <div className="reviews-list-item">
-      Review by: {owner}
-      <h2>{title}</h2>
-      <h2>{category}</h2>
-      <p>{designer}</p>
-      <p>{created_at}</p>
-      <button>⬆️</button>
-      {votes}
-      <button>⬇️</button>
-      <button>💬{comment_count}</button>
+      <div className="reviewcard-image">
+        <img src={review_img_url} alt={title}></img>
+      </div>
+      <div className="reviewcard-owner">Review by: {owner}</div>
+      <div className="reviewcard-title">{title}</div>
+      <div className="reviewcard-category">{category}</div>
+      <div className="reviewcard-designer">{designer}</div>
+      <div className="reviewcard-createdat">{created_at}</div>
+      <div className="reviewcard-upvote">
+        <button>⬆️</button>
+      </div>
+      <div className="reviewcard-kudos">{votes}</div>
+      <div className="reviewcard-downvote">
+        <button>⬇️</button>
+      </div>
+      <div className="reviewcard-comments">
+        <button>💬{comment_count}</button>
+      </div>
     </div>
   );
 }
