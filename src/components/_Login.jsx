@@ -29,9 +29,9 @@ export default function Login() {
             key={username}
           >
             <div className="allusers-item">
-              <img src={avatar_url} alt={name}></img>
-              <p>{username}</p>
-              <p>{name}</p>
+              <img src={avatar_url} alt={name} className="avatar"></img>
+              <h2 className="name">{name}</h2>
+              <p className="username">{username}</p>
             </div>
           </button>
         );
