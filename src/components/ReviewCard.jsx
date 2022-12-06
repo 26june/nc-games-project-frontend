@@ -1,5 +1,4 @@
 import React from "react";
-import { getCommentsByReviewId } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 export default function ReviewCard({ review }) {
@@ -9,12 +8,11 @@ export default function ReviewCard({ review }) {
     category,
     designer,
     owner,
-    review_body,
     review_img_url,
     created_at,
     votes,
     comment_count,
-  } = review;
+  } = review; //review_body can also be deconstructed from this
 
   let navigate = useNavigate();
 
