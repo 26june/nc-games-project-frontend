@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCategories } from "../api/api";
 import { LoggedInAs } from "../context/LoggedInAs";
+import { SelectedCategory } from "../context/SelectedCategory";
 import "../style/Nav.css";
 
-export default function Nav({ setSelectedCategory }) {
+export default function Nav() {
   const [categoriesState, setCategoriesState] = useState([]);
   const { loggedInAs } = useContext(LoggedInAs);
+  const { selectedCategory, setSelectedCategory } =
+    useContext(SelectedCategory);
   const { username } = loggedInAs;
   // { name, avatar_url} can be deconstructed from here
 
@@ -37,6 +40,7 @@ export default function Nav({ setSelectedCategory }) {
         onChange={(event) => {
           handleCategoryChange(event.target.value);
         }}
+        value={selectedCategory}
       >
         <option>All Categories</option>
         {categoriesState.map((category) => {

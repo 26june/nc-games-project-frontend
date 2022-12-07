@@ -11,6 +11,9 @@ export const getUsers = () => {
 };
 
 export const getReviews = (category) => {
+  if (category === "All Categories") {
+    category = "";
+  }
   return myApi.get("/reviews", { params: { category } }).then(({ data }) => {
     return data.reviews;
   });

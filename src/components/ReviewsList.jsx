@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getReviews } from "../api/api";
 import ReviewCard from "./ReviewCard";
 import Loading from "./loading/Loading";
+import { SelectedCategory } from "../context/SelectedCategory";
 
-export default function ReviewsList({ selectedCategory }) {
+export default function ReviewsList({ category = "" }) {
   const [reviewsState, setReviewsState] = useState([]);
+
+  const { selectedCategory, setSelectedCategory } =
+    useContext(SelectedCategory);
+
   let navigate = useNavigate();
   function reviewListClick(review_id) {
     navigate(`/reviews/${review_id}`);
@@ -15,11 +20,12 @@ export default function ReviewsList({ selectedCategory }) {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(selectedCategory).then((reviews) => {
+    setSelectedCategory(category);
+    getReviews(category).then((reviews) => {
       setReviewsState(reviews);
       setIsLoading(false);
     });
-  }, [selectedCategory]);
+  }, [category, setSelectedCategory]);
 
   return isLoading ? (
     <Loading></Loading>
