@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { pathcReviewsById } from "../api/api";
 
-export default function ReviewCard({ review }) {
+export default function ReviewCard({ review, setErr }) {
   const {
     review_id,
     title,
@@ -14,10 +15,21 @@ export default function ReviewCard({ review }) {
     comment_count,
   } = review; //review_body can also be deconstructed from this
 
+  const [votesState, setVotesState] = useState(votes);
+
   let navigate = useNavigate();
 
   function handleCommentClick() {
     navigate(`/reviews/${review_id}/comments`);
+  }
+
+  function handleVoteClick(voteToIncrement) {
+    setVotesState((current) => current + voteToIncrement);
+    setErr(null);
+    pathcReviewsById(review_id, voteToIncrement).catch((err) => {
+      setVotesState((current) => current - voteToIncrement);
+      setErr("Something went wrong, please try again");
+    });
   }
 
   return (
@@ -37,9 +49,21 @@ export default function ReviewCard({ review }) {
       </div>
 
       <div className="reviewcard-buttons">
-        <button>⬆️</button>
-        {votes}
-        <button>⬇️</button>
+        <button
+          onClick={() => {
+            handleVoteClick(1);
+          }}
+        >
+          ⬆️
+        </button>
+        {votesState}
+        <button
+          onClick={() => {
+            handleVoteClick(-1);
+          }}
+        >
+          ⬇️
+        </button>
 
         <button onClick={handleCommentClick}>💬{comment_count}</button>
       </div>
