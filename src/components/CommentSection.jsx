@@ -16,31 +16,42 @@ export default function CommentSection({ review_id }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (!currentCommentInput) {
+      return alert("The comment body is empty");
+    }
+    //requires form validation
+
     postCommentsById(review_id, loggedInAs.username, currentCommentInput).then(
-      () => {
+      (response) => {
+        setComments((current) => {
+          return [response, ...current]; //this makes the new comment show up at the top
+          //but when refreshed it will end up at the bottom
+        });
         setCurrentCommentInput("");
       }
     );
   }
 
   return (
-    <div>
+    <div className="comment-section">
       <form
         className="comment-form"
         onSubmit={(event) => {
           handleSubmit(event);
         }}
       >
-        <label htmlFor="comment-field">Add a comment</label>
-        <input
-          type="text"
-          autoComplete="off"
-          id="comment-field"
-          onChange={(event) => {
-            setCurrentCommentInput(event.target.value);
-          }}
-          value={currentCommentInput}
-        />
+        <div>
+          <label htmlFor="comment-field">Add a comment</label>
+          <input
+            type="text"
+            autoComplete="off"
+            id="comment-field"
+            onChange={(event) => {
+              setCurrentCommentInput(event.target.value);
+            }}
+            value={currentCommentInput}
+          />
+        </div>
         <button type="submit">Add Comment</button>
       </form>
 
