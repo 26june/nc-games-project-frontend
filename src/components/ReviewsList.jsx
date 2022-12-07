@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getReviews } from "../api/api";
 import ReviewCard from "./ReviewCard";
+import Loading from "./loading/Loading";
 
 export default function ReviewsList() {
   const [reviewsState, setReviewsState] = useState([]);
@@ -10,13 +11,19 @@ export default function ReviewsList() {
     navigate(`/reviews/${review_id}`);
   }
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     getReviews().then((reviews) => {
       setReviewsState(reviews);
+      setIsLoading(false);
     });
   }, []);
 
-  return (
+  return isLoading ? (
+    <Loading></Loading>
+  ) : (
     <div className="reviews-list-container">
       {reviewsState.map((review) => {
         return (
