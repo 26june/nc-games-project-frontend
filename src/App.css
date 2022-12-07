@@ -134,17 +134,30 @@ table {
   border-spacing: 0;
 }
 
-/* .allusers-container {
-} */
+.allusers-container {
+  display: flex;
+  flex-direction: column;
+}
 
 .allusers-item {
-  height: 150px;
-  width: 150px;
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.allusers-item > img {
-  aspect-ratio: 1/1;
-  width: 50px;
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.username {
+  margin-left: 20px;
+  color: #999;
 }
 
 .header-container {
@@ -171,57 +184,34 @@ table {
   text-decoration: none;
 }
 
-/* .reviews-list-item {
-  border: 1px solid black;
-  height: auto;
-  width: auto;
-  background-color: pink;
-} */
-
 /* Reviewcard */
 .reviews-list-item {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  background-color: mediumaquamarine;
+  display: flex;
+  flex-direction: column;
+  height: 50vw;
+  width: 100vw;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border: 1px solid black;
 }
 
-.reviewcard-owner {
-  grid-area: 1 / 1 / 2 / 6;
-}
+/* .reviews-list-item h3 > {
+} */
 
-.reviewcard-title {
-  grid-area: 2 / 3 / 3 / 6;
+.reviewcard-content {
+  display: flex;
+  border: 1px solid black;
 }
-
-.reviewcard-image {
-  grid-area: 2 / 1 / 5 / 3;
+.reviewcard-content-left {
+  border: 1px solid black;
 }
-.reviewcard-image img {
+.reviewcard-content-right {
+  border: 1px solid black;
+}
+.reviewcard-buttons {
+  border: 1px solid black;
+}
+.reviewcard-content-left > img {
   height: 100px;
   aspect-ratio: 1/1;
-}
-.reviewcard-upvote {
-  grid-area: 5 / 1 / 6 / 2;
-}
-.reviewcard-kudos {
-  grid-area: 5 / 2 / 6 / 3;
-}
-.reviewcard-downvote {
-  grid-area: 5 / 3 / 6 / 4;
-}
-.reviewcard-comments {
-  grid-area: 5 / 4 / 6 / 5;
-}
-.reviewcard-createdat {
-  grid-area: 5 / 5 / 6 / 6;
-}
-
-.reviewcard-category {
-  grid-area: 3 / 3 / 4 / 6;
-}
-.reviewcard-designer {
-  grid-area: 4 / 3 / 5 / 6;
 }

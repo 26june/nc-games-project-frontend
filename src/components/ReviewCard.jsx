@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ReviewCard({ review }) {
   const {
@@ -7,32 +8,40 @@ export default function ReviewCard({ review }) {
     category,
     designer,
     owner,
-    review_body,
     review_img_url,
     created_at,
     votes,
     comment_count,
-  } = review;
+  } = review; //review_body can also be deconstructed from this
+
+  let navigate = useNavigate();
+
+  function handleCommentClick() {
+    navigate(`/reviews/${review_id}/comments`);
+  }
 
   return (
     <div className="reviews-list-item">
-      <div className="reviewcard-image">
-        <img src={review_img_url} alt={title}></img>
+      <h3>Review by: {owner}</h3>
+
+      <div className="reviewcard-content">
+        <div className="reviewcard-content-left">
+          <img src={review_img_url} alt={title}></img>
+        </div>
+        <div className="reviewcard-content-right">
+          <h2>{title}</h2>
+          <h3>{category}</h3>
+          <h3>{designer}</h3>
+          <p>{created_at}</p>
+        </div>
       </div>
-      <div className="reviewcard-owner">Review by: {owner}</div>
-      <div className="reviewcard-title">{title}</div>
-      <div className="reviewcard-category">{category}</div>
-      <div className="reviewcard-designer">{designer}</div>
-      <div className="reviewcard-createdat">{created_at}</div>
-      <div className="reviewcard-upvote">
+
+      <div className="reviewcard-buttons">
         <button>⬆️</button>
-      </div>
-      <div className="reviewcard-kudos">{votes}</div>
-      <div className="reviewcard-downvote">
+        {votes}
         <button>⬇️</button>
-      </div>
-      <div className="reviewcard-comments">
-        <button>💬{comment_count}</button>
+
+        <button onClick={handleCommentClick}>💬{comment_count}</button>
       </div>
     </div>
   );
