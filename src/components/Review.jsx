@@ -10,6 +10,8 @@ export default function Review() {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [err, setErr] = useState(null);
+
   const { review_id } = useParams();
 
   useEffect(() => {
@@ -20,11 +22,13 @@ export default function Review() {
     });
   }, [review_id]);
 
+  if (err) return <p>{err}</p>;
+
   return isLoading ? (
     <Loading></Loading>
   ) : (
     <div>
-      <ReviewCard review={singleReview}></ReviewCard>
+      <ReviewCard review={singleReview} setErr={setErr}></ReviewCard>
       <p>{singleReview.review_body}</p>
       <Routes>
         <Route
