@@ -17,6 +17,9 @@ export default function ReviewCard({ review, setErr }) {
 
   const [votesState, setVotesState] = useState(votes);
 
+  const [disableUp, setDisableUp] = useState(false);
+  const [disableDown, setDisableDown] = useState(false);
+
   let navigate = useNavigate();
 
   function handleCommentClick() {
@@ -52,7 +55,10 @@ export default function ReviewCard({ review, setErr }) {
         <button
           onClick={() => {
             handleVoteClick(1);
+            setDisableUp(true);
+            setDisableDown(false);
           }}
+          disabled={disableUp}
         >
           ⬆️
         </button>
@@ -60,7 +66,10 @@ export default function ReviewCard({ review, setErr }) {
         <button
           onClick={() => {
             handleVoteClick(-1);
+            setDisableDown(true);
+            setDisableUp(false);
           }}
+          disabled={disableDown}
         >
           ⬇️
         </button>
