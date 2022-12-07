@@ -7,6 +7,12 @@
   gap: 10px 0px;
 }
 
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
 .comment-card-info {
   display: flex;
   justify-content: space-between;
