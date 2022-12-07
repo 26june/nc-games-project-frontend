@@ -4,6 +4,7 @@ import { getReviewsById } from "../api/api";
 import CommentSection from "./CommentSection";
 import Loading from "./loading/Loading";
 import ReviewCard from "./ReviewCard";
+import "../style/Review.css";
 
 export default function Review() {
   const [singleReview, setSingleReview] = useState({});
@@ -33,7 +34,7 @@ export default function Review() {
         setErr={setErr}
         showButtons={true}
       ></ReviewCard>
-      <p>{singleReview.review_body}</p>
+      <p className="review-body">{singleReview.review_body}</p>
       <Routes>
         <Route
           path="comments"

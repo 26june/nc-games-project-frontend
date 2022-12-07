@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCommentsByReviewId } from "../api/api";
+import "../style/CommenSection.css";
 
 export default function CommentSection({ review_id }) {
   const [comments, setComments] = useState([]);
