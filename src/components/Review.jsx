@@ -28,7 +28,11 @@ export default function Review() {
     <Loading></Loading>
   ) : (
     <div>
-      <ReviewCard review={singleReview} setErr={setErr}></ReviewCard>
+      <ReviewCard
+        review={singleReview}
+        setErr={setErr}
+        showButtons={true}
+      ></ReviewCard>
       <p>{singleReview.review_body}</p>
       <Routes>
         <Route

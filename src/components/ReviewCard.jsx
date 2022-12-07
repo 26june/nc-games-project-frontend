@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { pathcReviewsById } from "../api/api";
 
-export default function ReviewCard({ review, setErr }) {
+export default function ReviewCard({ review, setErr, showButtons }) {
   const {
     review_id,
     title,
@@ -51,31 +51,37 @@ export default function ReviewCard({ review, setErr }) {
         </div>
       </div>
 
-      <div className="reviewcard-buttons">
-        <button
-          onClick={() => {
-            handleVoteClick(1);
-            setDisableUp(true);
-            setDisableDown(false);
-          }}
-          disabled={disableUp}
-        >
-          ⬆️
-        </button>
-        {votesState}
-        <button
-          onClick={() => {
-            handleVoteClick(-1);
-            setDisableDown(true);
-            setDisableUp(false);
-          }}
-          disabled={disableDown}
-        >
-          ⬇️
-        </button>
+      {showButtons ? (
+        <div className="reviewcard-buttons">
+          <button
+            onClick={() => {
+              handleVoteClick(1);
+              setDisableUp(true);
+              setDisableDown(false);
+            }}
+            disabled={disableUp}
+          >
+            ⬆️
+          </button>
+          {votesState}
+          <button
+            onClick={() => {
+              handleVoteClick(-1);
+              setDisableDown(true);
+              setDisableUp(false);
+            }}
+            disabled={disableDown}
+          >
+            ⬇️
+          </button>
 
-        <button onClick={handleCommentClick}>💬{comment_count}</button>
-      </div>
+          <button onClick={handleCommentClick}>💬{comment_count}</button>
+        </div>
+      ) : (
+        <p>
+          {votes} Votes | {comment_count} Comments
+        </p>
+      )}
     </div>
   );
 }
