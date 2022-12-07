@@ -8,8 +8,7 @@ import { SelectedCategory } from "../context/SelectedCategory";
 export default function ReviewsList({ category = "" }) {
   const [reviewsState, setReviewsState] = useState([]);
 
-  const { selectedCategory, setSelectedCategory } =
-    useContext(SelectedCategory);
+  const { setSelectedCategory } = useContext(SelectedCategory);
 
   let navigate = useNavigate();
   function reviewListClick(review_id) {
