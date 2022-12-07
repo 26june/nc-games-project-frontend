@@ -36,3 +36,12 @@ export const getCommentsByReviewId = (review_id) => {
     return data.comments;
   });
 };
+
+export const postCommentsById = (review_id, username, body) => {
+  const patchBody = { username, body };
+  return myApi
+    .post(`/reviews/${review_id}/comments`, patchBody)
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
