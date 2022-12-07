@@ -1,3 +1,10 @@
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+  padding: 10px;
+}
+
 .comment-card {
   display: flex;
   flex-direction: column;
@@ -10,7 +17,12 @@
 .comment-form {
   display: flex;
   flex-direction: column;
-  
+  gap: 10px 0px;
+}
+
+.comment-form > div {
+  display: flex;
+  flex-direction: column;
 }
 
 .comment-card-info {

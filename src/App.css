@@ -206,6 +206,7 @@ table {
   border: 1px solid black;
 }
 .reviewcard-content-right {
+  width: 100%;
   border: 1px solid black;
 }
 .reviewcard-buttons {
