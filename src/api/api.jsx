@@ -22,6 +22,15 @@ export const getReviewsById = (review_id) => {
   });
 };
 
+export const pathcReviewsById = (review_id, voteToIncrement) => {
+  const patchBody = {
+    inc_votes: voteToIncrement,
+  };
+  return myApi.patch(`/reviews/${review_id}`, patchBody).then(({ data }) => {
+    return data.review;
+  });
+};
+
 export const getCommentsByReviewId = (review_id) => {
   return myApi.get(`/reviews/${review_id}/comments`).then(({ data }) => {
     return data.comments;
