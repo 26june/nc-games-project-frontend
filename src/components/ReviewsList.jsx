@@ -4,7 +4,7 @@ import { getReviews } from "../api/api";
 import ReviewCard from "./ReviewCard";
 import Loading from "./loading/Loading";
 
-export default function ReviewsList() {
+export default function ReviewsList({ selectedCategory }) {
   const [reviewsState, setReviewsState] = useState([]);
   let navigate = useNavigate();
   function reviewListClick(review_id) {
@@ -15,11 +15,11 @@ export default function ReviewsList() {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviews) => {
+    getReviews(selectedCategory).then((reviews) => {
       setReviewsState(reviews);
       setIsLoading(false);
     });
-  }, []);
+  }, [selectedCategory]);
 
   return isLoading ? (
     <Loading></Loading>

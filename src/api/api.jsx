@@ -10,8 +10,8 @@ export const getUsers = () => {
   });
 };
 
-export const getReviews = () => {
-  return myApi.get("/reviews").then(({ data }) => {
+export const getReviews = (category) => {
+  return myApi.get("/reviews", { params: { category } }).then(({ data }) => {
     return data.reviews;
   });
 };
@@ -44,4 +44,10 @@ export const postCommentsById = (review_id, username, body) => {
     .then(({ data }) => {
       return data.comment;
     });
+};
+
+export const getCategories = () => {
+  return myApi.get(`/categories`).then(({ data }) => {
+    return data.categories;
+  });
 };
