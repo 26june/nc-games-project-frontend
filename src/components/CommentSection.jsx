@@ -16,10 +16,12 @@ export default function CommentSection({ review_id }) {
       {comments.map(({ comment_id, body, author, votes, created_at }) => {
         return (
           <div className="comment-card" key={comment_id}>
+            <div className="comment-card-info">
+              <p>{author}</p>
+              <p>{created_at}</p>
+            </div>
             <p>{body}</p>
-            <p>{author}</p>
-            <p>{votes}</p>
-            <p>{created_at}</p>
+            <p>{votes} Votes</p>
           </div>
         );
       })}
