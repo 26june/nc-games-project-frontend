@@ -33,24 +33,27 @@ export default function Nav() {
     <div className="nav-container">
       <Link to="/">Home</Link>
 
-      <label htmlFor="categories">Select a Category</label>
-      <select
-        name="categories"
-        id="categories"
-        onChange={(event) => {
-          handleCategoryChange(event.target.value);
-        }}
-        value={selectedCategory}
-      >
-        <option>All Categories</option>
-        {categoriesState.map((category) => {
-          return (
-            <option key={category.slug} value={category.slug}>
-              {category.slug}
-            </option>
-          );
-        })}
-      </select>
+      <div>
+        <label htmlFor="categories">Select a Category</label>
+        <select
+          name="categories"
+          id="categories"
+          onChange={(event) => {
+            handleCategoryChange(event.target.value);
+          }}
+          value={selectedCategory}
+        >
+          <option>All Categories</option>
+          {categoriesState.map((category) => {
+            return (
+              <option key={category.slug} value={category.slug}>
+                {category.slug}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+
       {username}
     </div>
   );
