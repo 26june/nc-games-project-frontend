@@ -14,6 +14,10 @@
   gap: 10px 0px;
 }
 
+.comment-card p {
+  white-space: pre-line;
+}
+
 .comment-form {
   display: flex;
   flex-direction: column;

@@ -58,6 +58,7 @@ export default function CommentSection({ review_id }) {
             helperText={helperTextState}
             value={currentCommentInput}
             error={textFieldError}
+            multiline
           ></TextField>
         </div>
         <button type="submit">Add Comment</button>
