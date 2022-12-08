@@ -170,7 +170,12 @@ table {
 .reviews-list-container {
   height: auto;
   width: auto;
-  background-color: purple;
+  background-color: #2f2f2f;
+  padding-top: 0.1px;
+}
+
+.reviews-list-container > div {
+  cursor: pointer;
 }
 
 .reviews-list-container > a {
@@ -182,10 +187,11 @@ table {
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 100vw;
+  width: auto;
   padding: 10px;
   background-color: #f8f8f8;
   border: 1px solid black;
+  margin: 10px;
 }
 
 /* .reviews-list-item h3 > {
