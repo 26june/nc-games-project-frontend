@@ -167,17 +167,15 @@ table {
   text-align: center;
 }
 
-.nav-container {
-  height: 5vh;
-  width: auto;
-  background-color: red;
-  text-align: center;
-}
-
 .reviews-list-container {
   height: auto;
   width: auto;
-  background-color: purple;
+  background-color: #2f2f2f;
+  padding-top: 0.1px;
+}
+
+.reviews-list-container > div {
+  cursor: pointer;
 }
 
 .reviews-list-container > a {
@@ -188,11 +186,12 @@ table {
 .reviews-list-item {
   display: flex;
   flex-direction: column;
-  height: 50vw;
-  width: 100vw;
+  height: auto;
+  width: auto;
   padding: 10px;
   background-color: #f8f8f8;
   border: 1px solid black;
+  margin: 10px;
 }
 
 /* .reviews-list-item h3 > {
@@ -206,6 +205,7 @@ table {
   border: 1px solid black;
 }
 .reviewcard-content-right {
+  width: 100%;
   border: 1px solid black;
 }
 .reviewcard-buttons {

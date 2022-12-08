@@ -1,0 +1,31 @@
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+  padding: 10px;
+}
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: #9370d8;
+  padding: 10px;
+  gap: 10px 0px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+.comment-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-card-info {
+  display: flex;
+  justify-content: space-between;
+}

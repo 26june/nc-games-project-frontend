@@ -4,11 +4,14 @@ import { getReviewsById } from "../api/api";
 import CommentSection from "./CommentSection";
 import Loading from "./loading/Loading";
 import ReviewCard from "./ReviewCard";
+import "../style/Review.css";
 
 export default function Review() {
   const [singleReview, setSingleReview] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const [err, setErr] = useState(null);
 
   const { review_id } = useParams();
 
@@ -20,12 +23,18 @@ export default function Review() {
     });
   }, [review_id]);
 
+  if (err) return <p>{err}</p>;
+
   return isLoading ? (
     <Loading></Loading>
   ) : (
     <div>
-      <ReviewCard review={singleReview}></ReviewCard>
-      <p>{singleReview.review_body}</p>
+      <ReviewCard
+        review={singleReview}
+        setErr={setErr}
+        showButtons={true}
+      ></ReviewCard>
+      <p className="review-body">{singleReview.review_body}</p>
       <Routes>
         <Route
           path="comments"

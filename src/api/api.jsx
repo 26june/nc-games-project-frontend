@@ -10,8 +10,11 @@ export const getUsers = () => {
   });
 };
 
-export const getReviews = () => {
-  return myApi.get("/reviews").then(({ data }) => {
+export const getReviews = (category) => {
+  if (category === "All Categories") {
+    category = "";
+  }
+  return myApi.get("/reviews", { params: { category } }).then(({ data }) => {
     return data.reviews;
   });
 };
@@ -22,8 +25,32 @@ export const getReviewsById = (review_id) => {
   });
 };
 
+export const pathcReviewsById = (review_id, voteToIncrement) => {
+  const patchBody = {
+    inc_votes: voteToIncrement,
+  };
+  return myApi.patch(`/reviews/${review_id}`, patchBody).then(({ data }) => {
+    return data.review;
+  });
+};
+
 export const getCommentsByReviewId = (review_id) => {
   return myApi.get(`/reviews/${review_id}/comments`).then(({ data }) => {
     return data.comments;
+  });
+};
+
+export const postCommentsById = (review_id, username, body) => {
+  const patchBody = { username, body };
+  return myApi
+    .post(`/reviews/${review_id}/comments`, patchBody)
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
+
+export const getCategories = () => {
+  return myApi.get(`/categories`).then(({ data }) => {
+    return data.categories;
   });
 };
