@@ -31,6 +31,7 @@ export default function CommentSection({ review_id }) {
     if (!currentCommentInput) {
       setTextFieldError(true);
       setHelperTextState("Please add a comment body");
+      return;
     }
     //requires form validation
 

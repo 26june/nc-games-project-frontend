@@ -6,6 +6,7 @@ import Review from "./Review";
 import { useState } from "react";
 import { SelectedCategory } from "../context/SelectedCategory";
 import CategorisedReview from "./CategorisedReview";
+import Error from "./Error";
 
 export default function Home() {
   // console.log(window.location.pathname);
@@ -30,6 +31,7 @@ export default function Home() {
             path="/reviews/:review_id/*"
             element={<Review></Review>}
           ></Route>
+          <Route path="*" element={<Error></Error>}></Route>
         </Routes>
       </div>
     </SelectedCategory.Provider>
