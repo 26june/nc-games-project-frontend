@@ -1,19 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getCommentsByReviewId, postCommentsById } from "../api/api";
+import {
+  deleteCommentsById,
+  getCommentsByReviewId,
+  postCommentsById,
+} from "../api/api";
 import "../style/CommenSection.css";
 import { LoggedInAs } from "../context/LoggedInAs";
 import { TextField } from "@mui/material";
+import Loading from "./loading/Loading";
 
 export default function CommentSection({ review_id }) {
   const [comments, setComments] = useState([]);
   const [currentCommentInput, setCurrentCommentInput] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [textFieldError, setTextFieldError] = useState(false);
   const [helperTextState, setHelperTextState] = useState("");
 
   useEffect(() => {
+    setIsLoading(true);
     getCommentsByReviewId(review_id).then((response) => {
       setComments(response);
+      setIsLoading(false);
     });
   }, [review_id]);
   const { loggedInAs } = useContext(LoggedInAs);
@@ -37,7 +45,19 @@ export default function CommentSection({ review_id }) {
     );
   }
 
-  return (
+  function handleDeleteClick(comment_id) {
+    setComments((current) => {
+      const updatedComments = current.filter(
+        (comment) => comment.comment_id !== comment_id
+      );
+      return updatedComments;
+    });
+    deleteCommentsById(comment_id);
+  }
+
+  return isLoading ? (
+    <Loading></Loading>
+  ) : (
     <div className="comment-section">
       <form
         className="comment-form"
@@ -72,7 +92,18 @@ export default function CommentSection({ review_id }) {
               <p>{created_at}</p>
             </div>
             <p>{body}</p>
-            <p>{votes} Votes</p>
+            <div className="comment-card-bottom">
+              <p>{votes} Votes</p>
+              {author === loggedInAs.username ? (
+                <button
+                  onClick={() => {
+                    handleDeleteClick(comment_id);
+                  }}
+                >
+                  ❎
+                </button>
+              ) : null}
+            </div>
           </div>
         );
       })}
