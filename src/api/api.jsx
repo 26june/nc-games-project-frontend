@@ -10,13 +10,15 @@ export const getUsers = () => {
   });
 };
 
-export const getReviews = (category) => {
+export const getReviews = (category, sort_by = "votes", order = "desc") => {
   if (category === "All Categories") {
     category = "";
   }
-  return myApi.get("/reviews", { params: { category } }).then(({ data }) => {
-    return data.reviews;
-  });
+  return myApi
+    .get("/reviews", { params: { category, sort_by, order } })
+    .then(({ data }) => {
+      return data.reviews;
+    });
 };
 
 export const getReviewsById = (review_id) => {
