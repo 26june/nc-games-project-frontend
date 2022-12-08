@@ -2,10 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { getCommentsByReviewId, postCommentsById } from "../api/api";
 import "../style/CommenSection.css";
 import { LoggedInAs } from "../context/LoggedInAs";
+import { TextField } from "@mui/material";
 
 export default function CommentSection({ review_id }) {
   const [comments, setComments] = useState([]);
   const [currentCommentInput, setCurrentCommentInput] = useState("");
+
+  const [textFieldError, setTextFieldError] = useState(false);
+  const [helperTextState, setHelperTextState] = useState("");
 
   useEffect(() => {
     getCommentsByReviewId(review_id).then((response) => {
@@ -17,7 +21,8 @@ export default function CommentSection({ review_id }) {
   function handleSubmit(event) {
     event.preventDefault();
     if (!currentCommentInput) {
-      return alert("The comment body is empty");
+      setTextFieldError(true);
+      setHelperTextState("Please add a comment body");
     }
     //requires form validation
 
@@ -42,15 +47,18 @@ export default function CommentSection({ review_id }) {
       >
         <div>
           <label htmlFor="comment-field">Add a comment</label>
-          <input
-            type="text"
-            autoComplete="off"
+          <TextField
             id="comment-field"
+            autoComplete="off"
             onChange={(event) => {
               setCurrentCommentInput(event.target.value);
+              setTextFieldError(false);
+              setHelperTextState("");
             }}
+            helperText={helperTextState}
             value={currentCommentInput}
-          />
+            error={textFieldError}
+          ></TextField>
         </div>
         <button type="submit">Add Comment</button>
       </form>
