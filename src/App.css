@@ -181,7 +181,7 @@ table {
 .reviews-list-item {
   display: flex;
   flex-direction: column;
-  height: 50vw;
+  height: auto;
   width: 100vw;
   padding: 10px;
   background-color: #f8f8f8;
