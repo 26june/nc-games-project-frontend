@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getReviewsById } from "../api/api";
 import CommentSection from "./CommentSection";
 import Loading from "./loading/Loading";
