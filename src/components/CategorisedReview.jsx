@@ -14,6 +14,7 @@ export default function CategorisedReview() {
   });
 
   return availableCategories.includes(category) ||
+    availableCategories.length === 0 ||
     category === "All Categories" ? (
     <div>
       <ReviewsList category={category}></ReviewsList>
