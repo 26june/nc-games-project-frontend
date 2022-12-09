@@ -6,7 +6,7 @@ import { SelectedCategory } from "../context/SelectedCategory";
 import "../style/Nav.css";
 
 export default function Nav() {
-  const { loggedInAs } = useContext(LoggedInAs);
+  const { loggedInAs, setLoggedInAs } = useContext(LoggedInAs);
   const {
     categoriesState,
     setCategoriesState,
@@ -56,8 +56,13 @@ export default function Nav() {
           })}
         </select>
       </div>
-
-      {username}
+      <div
+        onClick={() => {
+          setLoggedInAs(null);
+        }}
+      >
+        {username}
+      </div>
     </div>
   );
 }

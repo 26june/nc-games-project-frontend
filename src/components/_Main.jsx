@@ -33,10 +33,12 @@ export default function Home() {
             element={<CategorisedReview></CategorisedReview>}
           ></Route>
 
+          <Route path="/reviews/:review_id" element={<Review></Review>}></Route>
           <Route
-            path="/reviews/:review_id/*"
+            path="/reviews/:review_id/:comments"
             element={<Review></Review>}
           ></Route>
+
           <Route path="*" element={<Error></Error>}></Route>
         </Routes>
       </div>

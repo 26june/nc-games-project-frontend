@@ -7,6 +7,7 @@ import ReviewCard from "./ReviewCard";
 import "../style/Review.css";
 
 import NoReview from "./NoReview";
+import Error from "./Error";
 
 export default function Review() {
   const [singleReview, setSingleReview] = useState({});
@@ -16,7 +17,7 @@ export default function Review() {
   const [errorState, setErrorState] = useState(null);
   const [err, setErr] = useState(null);
 
-  const { review_id } = useParams();
+  const { review_id, comments } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,7 +34,7 @@ export default function Review() {
 
   if (err) return <p>{err}</p>; //this is for optimistice rendering
   if (errorState) return <NoReview review_id={review_id}></NoReview>; //this is for non existant path
-
+  if (comments !== undefined && comments !== "comments") return <Error></Error>; //mispelling of comments results to error page
   return isLoading ? (
     <Loading></Loading>
   ) : (
@@ -44,12 +45,9 @@ export default function Review() {
         showButtons={true}
       ></ReviewCard>
       <p className="review-body">{singleReview.review_body}</p>
-      <Routes>
-        <Route
-          path="comments"
-          element={<CommentSection review_id={review_id}></CommentSection>}
-        ></Route>
-      </Routes>
+      {comments === "comments" ? (
+        <CommentSection review_id={review_id}></CommentSection>
+      ) : null}
     </div>
   );
 }
