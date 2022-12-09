@@ -35,7 +35,6 @@ export default function Nav() {
   return (
     <div className="nav-container">
       <Link to="/">Home</Link>
-
       <div>
         <label htmlFor="categories">Select a Category</label>
         <select
@@ -56,13 +55,14 @@ export default function Nav() {
           })}
         </select>
       </div>
-      <div
+      <p>{username}</p>
+      <button
         onClick={() => {
           setLoggedInAs(null);
         }}
       >
-        {username}
-      </div>
+        Swtich User
+      </button>
     </div>
   );
 }
