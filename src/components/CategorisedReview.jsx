@@ -14,7 +14,9 @@ export default function CategorisedReview() {
   });
 
   return availableCategories.includes(category) ||
-    availableCategories.length === 0 ||
+    availableCategories.length === 0 || //having || 0 here means that we cant go into no category at the start
+    //when everything needs to be loaded
+    //also skips NoCategory if there is a bad query and goes straight to Error400
     category === "All Categories" ? (
     <div>
       <ReviewsList category={category}></ReviewsList>
