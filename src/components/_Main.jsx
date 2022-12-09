@@ -6,15 +6,22 @@ import Review from "./Review";
 import { useState } from "react";
 import { SelectedCategory } from "../context/SelectedCategory";
 import CategorisedReview from "./CategorisedReview";
+import Error from "./Error";
 
 export default function Home() {
   // console.log(window.location.pathname);
 
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [categoriesState, setCategoriesState] = useState([]);
 
   return (
     <SelectedCategory.Provider
-      value={{ selectedCategory, setSelectedCategory }}
+      value={{
+        categoriesState,
+        setCategoriesState,
+        selectedCategory,
+        setSelectedCategory,
+      }}
     >
       <div>
         <Header className="Header"></Header>
@@ -30,6 +37,7 @@ export default function Home() {
             path="/reviews/:review_id/*"
             element={<Review></Review>}
           ></Route>
+          <Route path="*" element={<Error></Error>}></Route>
         </Routes>
       </div>
     </SelectedCategory.Provider>

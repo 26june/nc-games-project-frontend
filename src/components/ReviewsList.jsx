@@ -5,6 +5,7 @@ import ReviewCard from "./ReviewCard";
 import Loading from "./loading/Loading";
 import { SelectedCategory } from "../context/SelectedCategory";
 import Sortbar from "./Sortbar";
+import Error400 from "./Error400";
 
 export default function ReviewsList({ category = "" }) {
   const [reviewsState, setReviewsState] = useState([]);
@@ -18,6 +19,8 @@ export default function ReviewsList({ category = "" }) {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [errorState, setErrorState] = useState(null);
+
   const [currentSearch, setCurrentSearch] = useSearchParams();
 
   useEffect(() => {
@@ -25,11 +28,18 @@ export default function ReviewsList({ category = "" }) {
     const sort_by = currentSearch.get("sort_by") || undefined; //dont set to null
     const order_by = currentSearch.get("order_by") || undefined; //if set to null the defaults dont kick in
     setSelectedCategory(category);
-    getReviews(category, sort_by, order_by).then((reviews) => {
-      setReviewsState(reviews);
-      setIsLoading(false);
-    });
+    getReviews(category, sort_by, order_by)
+      .then((reviews) => {
+        setReviewsState(reviews);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setErrorState(err);
+        setIsLoading(false);
+      });
   }, [category, setSelectedCategory, currentSearch]);
+
+  if (errorState) return <Error400></Error400>;
 
   return isLoading ? (
     <Loading></Loading>

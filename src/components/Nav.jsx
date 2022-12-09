@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCategories } from "../api/api";
 import { LoggedInAs } from "../context/LoggedInAs";
@@ -6,10 +6,13 @@ import { SelectedCategory } from "../context/SelectedCategory";
 import "../style/Nav.css";
 
 export default function Nav() {
-  const [categoriesState, setCategoriesState] = useState([]);
   const { loggedInAs } = useContext(LoggedInAs);
-  const { selectedCategory, setSelectedCategory } =
-    useContext(SelectedCategory);
+  const {
+    categoriesState,
+    setCategoriesState,
+    selectedCategory,
+    setSelectedCategory,
+  } = useContext(SelectedCategory);
   const { username } = loggedInAs;
   // { name, avatar_url} can be deconstructed from here
 
@@ -27,7 +30,7 @@ export default function Nav() {
     getCategories().then((categories) => {
       setCategoriesState(categories);
     });
-  }, []);
+  }, [setCategoriesState]);
 
   return (
     <div className="nav-container">
