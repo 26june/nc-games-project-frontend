@@ -12,10 +12,16 @@ export default function Home() {
   // console.log(window.location.pathname);
 
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [categoriesState, setCategoriesState] = useState([]);
 
   return (
     <SelectedCategory.Provider
-      value={{ selectedCategory, setSelectedCategory }}
+      value={{
+        categoriesState,
+        setCategoriesState,
+        selectedCategory,
+        setSelectedCategory,
+      }}
     >
       <div>
         <Header className="Header"></Header>

@@ -5,7 +5,8 @@ import CommentSection from "./CommentSection";
 import Loading from "./loading/Loading";
 import ReviewCard from "./ReviewCard";
 import "../style/Review.css";
-import Error from "./Error";
+
+import NoReview from "./NoReview";
 
 export default function Review() {
   const [singleReview, setSingleReview] = useState({});
@@ -31,7 +32,7 @@ export default function Review() {
   }, [review_id]);
 
   if (err) return <p>{err}</p>; //this is for optimistice rendering
-  if (errorState) return <Error></Error>; //this is for non existant path
+  if (errorState) return <NoReview review_id={review_id}></NoReview>; //this is for non existant path
 
   return isLoading ? (
     <Loading></Loading>
