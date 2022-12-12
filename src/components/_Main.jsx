@@ -1,4 +1,3 @@
-import Header from "./Header";
 import Nav from "./Nav";
 import ReviewsList from "./ReviewsList";
 import { Route, Routes } from "react-router-dom";
@@ -24,7 +23,6 @@ export default function Home() {
       }}
     >
       <div>
-        <Header className="Header"></Header>
         <Nav></Nav>
         <Routes>
           <Route path="/" element={<ReviewsList></ReviewsList>}></Route>
