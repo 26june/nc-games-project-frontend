@@ -1,0 +1,29 @@
+.reviewcard-content {
+  display: flex;
+  border: 1px solid black;
+}
+.reviewcard-content-left {
+  aspect-ratio: 1/1;
+  border: 1px solid red;
+}
+.reviewcard-content-right {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.reviewcard-content-right h2 {
+  font-weight: bold;
+}
+
+.reviewcard-buttons {
+  border: 1px solid black;
+}
+.reviewcard-content-left > img {
+  height: 150px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+}
