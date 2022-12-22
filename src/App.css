@@ -203,21 +203,3 @@ table {
 /* .reviews-list-item h3 > {
 } */
 
-.reviewcard-content {
-  display: flex;
-  border: 1px solid black;
-}
-.reviewcard-content-left {
-  border: 1px solid black;
-}
-.reviewcard-content-right {
-  width: 100%;
-  border: 1px solid black;
-}
-.reviewcard-buttons {
-  border: 1px solid black;
-}
-.reviewcard-content-left > img {
-  height: 100px;
-  aspect-ratio: 1/1;
-}

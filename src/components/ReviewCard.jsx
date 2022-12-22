@@ -1,6 +1,9 @@
+import { Chip } from "@mui/material";
+import CategoryIcon from "@mui/icons-material/Category";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { pathcReviewsById } from "../api/api";
+import "../style/ReviewCard.css";
 
 export default function ReviewCard({ review, setErr, showButtons }) {
   const {
@@ -45,7 +48,14 @@ export default function ReviewCard({ review, setErr, showButtons }) {
         </div>
         <div className="reviewcard-content-right">
           <h2>{title}</h2>
-          <h3>{category}</h3>
+
+          <Chip
+            sx={{ width: "fit-content" }}
+            icon={<CategoryIcon />}
+            color="primary"
+            label={category}
+          />
+
           <h3>{designer}</h3>
           <p>{created_at}</p>
         </div>
