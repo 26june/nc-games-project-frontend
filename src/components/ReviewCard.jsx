@@ -1,9 +1,15 @@
-import { Chip } from "@mui/material";
+import { Chip, IconButton } from "@mui/material";
 import CategoryIcon from "@mui/icons-material/Category";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { pathcReviewsById } from "../api/api";
 import "../style/ReviewCard.css";
+import {
+  ArrowCircleDown,
+  ArrowCircleDownTwoTone,
+  ArrowCircleUp,
+  ArrowCircleUpTwoTone,
+} from "@mui/icons-material";
 
 export default function ReviewCard({ review, setErr, showButtons }) {
   const {
@@ -19,6 +25,7 @@ export default function ReviewCard({ review, setErr, showButtons }) {
   } = review; //review_body can also be deconstructed from this
 
   const [votesState, setVotesState] = useState(votes);
+  const [originalVotes] = useState(votes);
 
   const [disableUp, setDisableUp] = useState(false);
   const [disableDown, setDisableDown] = useState(false);
@@ -29,11 +36,29 @@ export default function ReviewCard({ review, setErr, showButtons }) {
     navigate(`/reviews/${review_id}/comments`);
   }
 
-  function handleVoteClick(voteToIncrement) {
-    setVotesState((current) => current + voteToIncrement);
+  function handleUpVoteClick(increment) {
+    setVotesState(originalVotes + 1);
     setErr(null);
-    pathcReviewsById(review_id, voteToIncrement).catch((err) => {
-      setVotesState((current) => current - voteToIncrement);
+    pathcReviewsById(review_id, increment).catch((err) => {
+      setVotesState((current) => originalVotes - increment);
+      setErr("Something went wrong, please try again");
+    });
+  }
+
+  function handleVoteClickTwice(VotesToReset) {
+    setVotesState(originalVotes);
+    setErr(null);
+    pathcReviewsById(review_id, VotesToReset).catch((err) => {
+      setVotesState((current) => current + VotesToReset);
+      setErr("Something went wrong, please try again");
+    });
+  }
+
+  function handleDownVoteClick(increment) {
+    setVotesState(originalVotes - 1);
+    setErr(null);
+    pathcReviewsById(review_id, increment).catch((err) => {
+      setVotesState((current) => originalVotes + increment);
       setErr("Something went wrong, please try again");
     });
   }
@@ -63,27 +88,47 @@ export default function ReviewCard({ review, setErr, showButtons }) {
 
       {showButtons ? (
         <div className="reviewcard-buttons">
-          <button
+          <IconButton
+            aria-label="upvote"
+            size="small"
             onClick={() => {
-              handleVoteClick(1);
-              setDisableUp(true);
-              setDisableDown(false);
+              if (disableUp) {
+                handleVoteClickTwice(-1);
+                setDisableUp(false);
+              } else {
+                disableDown ? handleUpVoteClick(2) : handleUpVoteClick(1);
+                setDisableUp(true);
+                setDisableDown(false);
+              }
             }}
-            disabled={disableUp}
           >
-            ⬆️
-          </button>
+            {disableUp ? (
+              <ArrowCircleUpTwoTone></ArrowCircleUpTwoTone>
+            ) : (
+              <ArrowCircleUp></ArrowCircleUp>
+            )}
+          </IconButton>
           {votesState}
-          <button
+          <IconButton
+            aria-label="downvote"
+            size="small"
             onClick={() => {
-              handleVoteClick(-1);
-              setDisableDown(true);
-              setDisableUp(false);
+              if (disableDown) {
+                handleVoteClickTwice(1);
+                setDisableDown(false);
+              } else {
+                disableUp ? handleDownVoteClick(-2) : handleDownVoteClick(-1);
+                setDisableUp(false);
+                setDisableDown(true);
+              }
             }}
-            disabled={disableDown}
           >
-            ⬇️
-          </button>
+            {disableDown ? (
+              <ArrowCircleDownTwoTone></ArrowCircleDownTwoTone>
+            ) : (
+              <ArrowCircleDown></ArrowCircleDown>
+            )}
+          </IconButton>
 
           <button onClick={handleCommentClick}>💬{comment_count}</button>
         </div>
